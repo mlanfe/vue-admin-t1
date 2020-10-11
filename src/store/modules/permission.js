@@ -7,7 +7,7 @@ import { asyncRoutes, constantRoutes } from '@/router'
  */
 function hasPermission(roles, route) {
   if (route.meta && route.meta.roles) {
-    // 判断用户的权限于当前路由访问所需要的权限是否有一个满足
+    // 判断用户的权限于当前路由访问所需要的权限是否有一个满足.
     return roles.some(role => route.meta.roles.includes(role))
   } else {
     // 如果路由没有设置meta, 默认是可访问的
