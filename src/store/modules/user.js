@@ -30,13 +30,15 @@ const mutations = {
 
 const actions = {
   // user login
+  // 登陆验证，登陆成功之后，分别保存token到vuex、cookie中
+  // let {commit} = context 隐性结构赋值
   login({ commit }, userInfo) {
     const { username, password } = userInfo
     return new Promise((resolve, reject) => {
       login({ username: username.trim(), password: password }).then(response => {
         const { data } = response
-        commit('SET_TOKEN', data.token)
-        setToken(data.token)
+        commit('SET_TOKEN', data.token) // 更新store里面的token
+        setToken(data.token) // token保存到cookie
         resolve()
       }).catch(error => {
         reject(error)

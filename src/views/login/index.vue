@@ -153,11 +153,14 @@ export default {
       })
     },
     handleLogin() {
+      // 利用validate方法进行表单验证，验证通过则使用this.$store.dispatch调用user/login方法并传递这个表单的数据
       this.$refs.loginForm.validate(valid => {
         if (valid) {
           this.loading = true
+          // vuex的命名空间 user.js里面的action
           this.$store.dispatch('user/login', this.loginForm)
             .then(() => {
+              // 从哪里跳到/login页面，登陆之后就返回到哪里
               this.$router.push({ path: this.redirect || '/', query: this.otherQuery })
               this.loading = false
             })
